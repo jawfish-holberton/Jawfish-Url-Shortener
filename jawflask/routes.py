@@ -2,7 +2,7 @@
 
 
 import flask
-from flask import request, abort, redirect, render_template, jsonify
+from flask import request, abort, redirect, send_from_directory, jsonify
 from jawflask.jawfish import jawfishapp
 from jawflask.storage import urlstore
 from jawflask.random_short_url import url_generator
@@ -14,7 +14,7 @@ print("routes imported")
 def indexpage():
     """Display basic index page"""
     print("Display index")
-    return render_template("index.html")
+    return send_from_directory("templates", "index.html")
 
 
 @jawfishapp.route('/newurl', methods=["POST"])

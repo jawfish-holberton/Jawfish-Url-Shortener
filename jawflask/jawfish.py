@@ -13,4 +13,4 @@ from jawflask.routes import *
 
 if __name__ == "__main__":
     #jawflask.run(host="35.221.16.149", port="80")
-    jawfishapp.run(host="localhost", port="80")
+    jawfishapp.run(host="localhost", port="8000")
