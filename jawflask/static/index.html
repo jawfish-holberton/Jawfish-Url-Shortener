@@ -1,52 +1,60 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Jawfish</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="static/assets/css/main.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="static/favicon.ico">
 </head>
+
 <body>
     <!-- Input -->
-    <div class="container" style="padding-top: 3%">
-        <div class="row justify-content-center">
-            <img src="static/images/big_logo.png" alt="Jawfish logo" class="image-fluid">
+    <div class="container">
+        <div class="row justify-content-center" id="logo-row">
+        <img src="static/images/big_logo.png" alt="Jawfish logo">
         </div>
         <div class="row justify-content-around">
             <section class='col-4'>
-                <form action="" id="src-input" class="input-group input-group-lg">
-                    <input type="url" id="src-url">
-                    <button id="submit" class="btn btn-primary">Submit</button>
+                <form action="" id="src-input" class="input-group">
+                    <input class="my-input-size" type="url" id="src-url">
+                    <div class="input-group-append">
+                        <button id="submit" class="btn btn-jawfish">Submit</button>
+                    </div>
                 </form>
             </section>
             <section class='col-4'>
-                <form action="" id="output" class="input-group input-group-lg">
-                        <input type="text" id="output-url">
+                <form action="" id="output" class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Chomped Url</span>
+                    </div>
+                    <input class="my-input-size" type="text" id="output-url">
                 </form>
             </section>
         </div>
         <div class="row">
             <section id="stage"></section>
         </div>
-        <div class='row'>
-            <footer>footah</footer>
-        </div>
+        <footer>
+            <div class="container text-center justify-content-center" id="social">
+                <a href="https://fb.me/jawfishapp"><i class="fa fa-facebook fa-5x"></i></a>
+                <a href="https://twitter.com/jawfishapp"><i class="fa fa-twitter fa-5x"></i></a>
+            </div>
+        </footer>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function(event) {
+        document.addEventListener("DOMContentLoaded", function (event) {
             const apiUrl = '//localhost/newurl';
-
             let longUrl = document.getElementById('src-input');
             shortUrl = document.getElementById('output-url');
-
-            longUrl.addEventListener("submit", function(e) {
+            longUrl.addEventListener("submit", function (e) {
                 e.preventDefault();
-
                 let inputText = e.target[0].value;
                 shortUrl.value = inputText;
-
                 // const prom = fetch(apiUrl)
                 //     .then(function(response) {
                 //         return response.json();
@@ -55,7 +63,6 @@
                 //         console.log(JSON.stringify(myJson));
                 //         shortUrl.value = myJson.title
                 //     });
-
                 const prom = fetch(apiUrl, {
                     method: "POST",
                     // mode: "cors", // no-cors, cors, *same-origin
@@ -65,21 +72,18 @@
                     },
                     // redirect: "follow", // manual, *follow, error
                     // referrer: "no-referrer", // no-referrer, *client
-                    body: JSON.stringify({"sourceUrl": inputText}) // body data type must match "Content-Type" header
+                    body: JSON.stringify({
+                        "sourceUrl": inputText
+                    }) // body data type must match "Content-Type" header
                 })
-
                 prom
-                    .then(function(response) {
+                    .then(function (response) {
                         return response.json();
                     })
-                    .then(function(myJson) {
+                    .then(function (myJson) {
                         console.log(JSON.stringify(myJson));
-                        for(i in myJson) {
-                            key = i
-                        }
-                        shortUrl.value = window.location.href + key
+                        shortUrl.value = myJson.title
                     });
-
                 // for iframe
                 // const stage = document.getElementById('stage');
                 // let iframe = document.createElement('iframe');
@@ -88,5 +92,17 @@
             });
         });
     </script>
+    <script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
+    <script type="text/javascript">
+        require(["mojo/signup-forms/Loader"], function (L) {
+            L.start({
+                "baseUrl": "mc.us19.list-manage.com",
+                "uuid": "67c54296521ccae88d769134a",
+                "lid": "d33a69c826",
+                "uniqueMethods": false
+            })
+        })
+    </script>
 </body>
+
 </html>
