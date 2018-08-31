@@ -9,8 +9,8 @@
     
 </head>
 <body>
-    <h1>JAWFISH ANNOUNCES LAUNCH OF FLAGSHIP URL SHORTENER</h1>
 <div>
+    <h1>JAWFISH ANNOUNCES LAUNCH OF FLAGSHIP URL SHORTENER</h1>
 <p>SAN FRANCISCO, CA., Aug. 31, 2018 /HolbertonNews/  -- Jawfish, the creators of jellycart.io and #fomopapers, have announced its newest venture. Jawfish will now offer a url shortener to its consumer.</p>
 
 <p>Jawfish is proud to announce its series A round of funding, partnering with John Walecka of Redpoint Ventures. Redpoint Ventures is an American venture capital firm focused on investments in seed, early, and growth-stage companies that boast a portfolio consisting of MySpace, Twilio, Stripe, Zendesk, Heroku, and more!</p>
@@ -22,70 +22,9 @@
 <p>Sidney Burkett, CTO, said, “I had three wrist surgeries prior to jawfish. Now I use it to prevent carpal tunnel and have had zero surgeries since.”</p>
 
 <p>About Jawfish
+<img src="static/images/big_logo.png" alt="Jawfish logo" class="image-fluid">
 Jawfish is a San Francisco based startup that offers a web application that provides users marketing solutions. Jawfish started out in a small 3 bedroom home in Menlo Park, CA with an initial hit product, jellycart.io, a blockchain shopping cart. The hard act was soon followed up with #fomopapers, a social media platform that allows the user to share stories of their experiences and tag friends that may or may not been invited. Now Jawfish is offering their url shortener in an effort to promote sharing and tracking online content.<p>
+
 </div>
-	<!-- Input -->
-    <form action="" id="src-input">
-        <input type="url" id="src-url">
-        <button id="submit">Submit</button>
-    </form>
-
-    <form action="" id="output">
-            <input type="text" id="output-url">
-    </form>
-
-    <section id="stage"></section>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function(event) {
-            const apiUrl = '//localhost/newurl';
-
-            let longUrl = document.getElementById('src-input');
-            shortUrl = document.getElementById('output-url');
-
-            longUrl.addEventListener("submit", function(e) {
-                e.preventDefault();
-
-                let inputText = e.target[0].value;
-                shortUrl.value = inputText;
-
-                // const prom = fetch(apiUrl)
-                //     .then(function(response) {
-                //         return response.json();
-                //     })
-                //     .then(function(myJson) {
-                //         console.log(JSON.stringify(myJson));
-                //         shortUrl.value = myJson.title
-                //     });
-
-                const prom = fetch(apiUrl, {
-                    method: "POST",
-                    // mode: "cors", // no-cors, cors, *same-origin
-                    // credentials: "same-origin", // include, same-origin, *omit
-                    headers: {
-                        "Content-Type": "application/json; charset=utf-8"
-                    },
-                    // redirect: "follow", // manual, *follow, error
-                    // referrer: "no-referrer", // no-referrer, *client
-                    body: JSON.stringify({"sourceUrl": inputText}) // body data type must match "Content-Type" header
-                })
-
-                prom
-                    .then(function(response) {
-                        return response.json();
-                    })
-                    .then(function(myJson) {
-                        console.log(JSON.stringify(myJson));
-                        shortUrl.value = myJson.title
-                    });
-
-                // for iframe
-                // const stage = document.getElementById('stage');
-                // let iframe = document.createElement('iframe');
-                // iframe.setAttribute('src', inputText);
-                // console.log(iframe);
-            });
-        });
-    </script>
 </body>
 </html>
