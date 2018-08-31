@@ -2,9 +2,10 @@
 
 
 import flask
-from flask import request, abort, redirect
+from flask import request, abort, redirect, render_template
 from jawflask import jawfish
 from jawflask.storage import urlstore
+from jawflask.random_short_url import url_generator
 
 @jawfish.route('/')
 @jawfish.route('/index.html')
@@ -19,13 +20,15 @@ def posturl():
     """POST a url to shorten"""
     print("Post url to shorten")
     try:
-        sourceurl = request.json()["sourceurl"]
+        sourceurl = request.get_json()
+        print(sourceurl)
     except KeyError:
         abort(404)
+    print(sourceurl)
     url_generator(sourceurl)
 
 @jawfish.route('/deleteurl/<delshort>', methods=["DELETE"])
-def posturl(delshort):
+def delurl(delshort):
     """DELETE a url to delete"""
     print("Post url to delete")
     try:

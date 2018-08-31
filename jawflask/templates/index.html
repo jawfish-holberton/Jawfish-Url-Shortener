@@ -25,7 +25,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
-            const apiUrl = 'https://jsonplaceholder.typicode.com/todos/1';
+            const apiUrl = '//localhost/newurl';
 
             let longUrl = document.getElementById('src-input');
             shortUrl = document.getElementById('output-url');
@@ -54,7 +54,7 @@
                     },
                     // redirect: "follow", // manual, *follow, error
                     // referrer: "no-referrer", // no-referrer, *client
-                    body: {sourceUrl: inputText} // body data type must match "Content-Type" header
+                    body: JSON.stringify({"sourceUrl": inputText}) // body data type must match "Content-Type" header
                 })
 
                 prom
