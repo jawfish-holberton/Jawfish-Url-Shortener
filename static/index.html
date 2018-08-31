@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Jawfish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    
+</head>
+<body>
+    <h1>JAWFISH</h1>
+
+    <!-- Input -->
+    <form action="" id="src-input">
+        <input type="url" id="src-url">
+        <button id="submit">Submit</button>
+    </form>
+
+    <form action="" id="output">
+            <input type="text" id="output-url">
+    </form>
+
+    <section id="stage"></section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            const apiUrl = 'https://jsonplaceholder.typicode.com/todos/1';
+
+            let longUrl = document.getElementById('src-input');
+            shortUrl = document.getElementById('output-url');
+
+            longUrl.addEventListener("submit", function(e) {
+                e.preventDefault();
+
+                let inputText = e.target[0].value;
+                shortUrl.value = inputText;
+
+                // const prom = fetch(apiUrl)
+                //     .then(function(response) {
+                //         return response.json();
+                //     })
+                //     .then(function(myJson) {
+                //         console.log(JSON.stringify(myJson));
+                //         shortUrl.value = myJson.title
+                //     });
+
+                const prom = fetch(apiUrl, {
+                    method: "POST",
+                    // mode: "cors", // no-cors, cors, *same-origin
+                    // credentials: "same-origin", // include, same-origin, *omit
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                    // redirect: "follow", // manual, *follow, error
+                    // referrer: "no-referrer", // no-referrer, *client
+                    body: {sourceUrl: inputText} // body data type must match "Content-Type" header
+                })
+
+                prom
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(myJson) {
+                        console.log(JSON.stringify(myJson));
+                        shortUrl.value = myJson.title
+                    });
+
+                // for iframe
+                // const stage = document.getElementById('stage');
+                // let iframe = document.createElement('iframe');
+                // iframe.setAttribute('src', inputText);
+                // console.log(iframe);
+            });
+        });
+    </script>
+</body>
+</html>
