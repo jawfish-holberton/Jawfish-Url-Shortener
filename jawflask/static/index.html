@@ -48,42 +48,35 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function (event) {
-            const apiUrl = '//localhost/newurl';
+            const apiUrl = `${location.origin}/newurl`;
+
             let longUrl = document.getElementById('src-input');
             shortUrl = document.getElementById('output-url');
+
             longUrl.addEventListener("submit", function (e) {
                 e.preventDefault();
+
                 let inputText = e.target[0].value;
                 shortUrl.value = inputText;
-                // const prom = fetch(apiUrl)
-                //     .then(function(response) {
-                //         return response.json();
-                //     })
-                //     .then(function(myJson) {
-                //         console.log(JSON.stringify(myJson));
-                //         shortUrl.value = myJson.title
-                //     });
-                const prom = fetch(apiUrl, {
+
+                fetch(apiUrl, {
                     method: "POST",
                     // mode: "cors", // no-cors, cors, *same-origin
                     // credentials: "same-origin", // include, same-origin, *omit
-                    headers: {
-                        "Content-Type": "application/json; charset=utf-8"
-                    },
+                    headers: { "Content-Type": "application/json; charset=utf-8" },
                     // redirect: "follow", // manual, *follow, error
                     // referrer: "no-referrer", // no-referrer, *client
-                    body: JSON.stringify({
-                        "sourceUrl": inputText
-                    }) // body data type must match "Content-Type" header
+                    body: JSON.stringify({ "sourceUrl": inputText })
                 })
-                prom
-                    .then(function (response) {
-                        return response.json();
-                    })
-                    .then(function (myJson) {
-                        console.log(JSON.stringify(myJson));
-                        shortUrl.value = myJson.title
-                    });
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    // console.log(JSON.stringify(data));
+                    // console.log(typeof data);
+                    // console.log();
+                    shortUrl.value = `${location.origin}/${Object.keys(data)[0]}`
+                });
                 // for iframe
                 // const stage = document.getElementById('stage');
                 // let iframe = document.createElement('iframe');
