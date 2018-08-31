@@ -13,13 +13,15 @@
 
     <!-- Input -->
     <form action="" id="src-input">
-        <input type="text" id="src-url">
+        <input type="url" id="src-url">
         <button id="submit">Submit</button>
     </form>
 
     <form action="" id="output">
             <input type="text" id="output-url">
     </form>
+
+    <section id="stage"></section>
 
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
@@ -34,7 +36,28 @@
                 let inputText = e.target[0].value;
                 shortUrl.value = inputText;
 
-                const prom = fetch(apiUrl)
+                // const prom = fetch(apiUrl)
+                //     .then(function(response) {
+                //         return response.json();
+                //     })
+                //     .then(function(myJson) {
+                //         console.log(JSON.stringify(myJson));
+                //         shortUrl.value = myJson.title
+                //     });
+
+                const prom = fetch(apiUrl, {
+                    method: "POST",
+                    // mode: "cors", // no-cors, cors, *same-origin
+                    // credentials: "same-origin", // include, same-origin, *omit
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                    // redirect: "follow", // manual, *follow, error
+                    // referrer: "no-referrer", // no-referrer, *client
+                    body: {sourceUrl: inputText} // body data type must match "Content-Type" header
+                })
+
+                prom
                     .then(function(response) {
                         return response.json();
                     })
@@ -42,6 +65,12 @@
                         console.log(JSON.stringify(myJson));
                         shortUrl.value = myJson.title
                     });
+
+                // for iframe
+                // const stage = document.getElementById('stage');
+                // let iframe = document.createElement('iframe');
+                // iframe.setAttribute('src', inputText);
+                // console.log(iframe);
             });
         });
     </script>
