@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Jawfish</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
     
@@ -12,17 +13,23 @@
     <h1>JAWFISH</h1>
 
     <!-- Input -->
-    <form action="" id="src-input">
-        <input type="url" id="src-url">
-        <button id="submit">Submit</button>
-    </form>
-
-    <form action="" id="output">
-            <input type="text" id="output-url">
-    </form>
-
-    <section id="stage"></section>
-
+    <div class="container">
+        <div class="row">
+            <section class='col-med'>
+                <form action="" id="src-input" class="input-group input-group-lg">
+                    <input type="url" id="src-url">
+                    <button id="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </section>
+            <section class='col-med'>
+                <form action="" id="output" class="input-group input-group-lg">
+                        <input type="text" id="output-url">
+                </form>
+            </section>
+        </div>
+        <div class="row">
+            <section id="stage"></section>
+        </div>
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
             const apiUrl = '//localhost/newurl';
