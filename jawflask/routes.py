@@ -14,7 +14,7 @@ print("routes imported")
 def indexpage():
     """Display basic index page"""
     print("Display index")
-    return send_from_directory("templates", "index.html")
+    return send_from_directory("static", "index.html")
 
 
 @jawfishapp.route('/newurl', methods=["POST"])
