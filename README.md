@@ -1,5 +1,20 @@
 # Jawfish-Url-Shortener
 
+## Url Shortener
+A url shortener allows a user to input a url and receive a new shorter link to the same web address.
+
+## Description
+The Jawfish url shortener allows a user to input a url and receive a new shorter link to the same web address.
+
+## Environment
+* OS: Ubuntu 14.04 LTS
+* Languages: Python 3.4.3, HTML, JSON
+
+## Getting Started
+```
+git clone https://github.com/Donnerschlag/Jawfish-Url-Shortener.git
+```
+
 ## Members:
 
 ### Business / Operations Team
