@@ -5,3 +5,5 @@ import random
 
 def url_generator(size=6, chars=string.ascii_uppercase + string.ascii_lowercase):
     return ''.join(random.choice(chars) for i in range(size))
+if __name__ == '__main__':
+    print(url_generator())
