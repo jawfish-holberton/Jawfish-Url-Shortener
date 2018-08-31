@@ -1,0 +1,27 @@
+#logo-row {
+    margin-top: 100px;
+    padding-bottom: 60px;
+}
+
+.my-input-size {
+    width: 200px;
+}
+
+.btn-jawfish {
+    color: #fff;
+    background-color: #FC261D;
+    border-color: #FC261D;
+}
+
+footer > div {
+    font-size: 10px;
+}
+
+#social {
+    padding-top: 60px;
+    margin-left: -20px;
+}
+
+#social > a {
+    padding: 0px 20px;
+}
