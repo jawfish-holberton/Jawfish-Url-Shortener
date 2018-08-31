@@ -11,16 +11,25 @@
 <body>
     <h1>JAWFISH</h1>
 
-    <form action="">
-        <input type="text" id="source-url">
+    <!-- Input -->
+    <form action="" id="src-input">
+        <input type="text" id="src-url">
         <button id="submit">Submit</button>
+    </form>
+
+    <form action="" id="output">
+            <input type="text" id="output-url">
     </form>
 
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
-            console.log("It's Done")
-            let temp = document.getElementById("submit")
-            console.log(temp)
+            let longUrl = document.getElementById('src-input');
+            longUrl.addEventListener("submit", function(e) {
+                e.preventDefault();                
+                let input_v = e.target[0].value;
+                shortUrl = document.getElementById('output-url');
+                shortUrl.value = input_v;
+            });
         });
     </script>
 </body>
