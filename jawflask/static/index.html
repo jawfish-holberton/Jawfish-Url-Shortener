@@ -10,6 +10,14 @@
     <link href="static/assets/css/main.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="static/favicon.ico">
+    <style>
+        #stage iframe {
+            width: 80vw;
+            height: 50vh;
+            padding: 50px;
+            border: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -36,9 +44,11 @@
                 </form>
             </section>
         </div>
+
         <div class="row">
             <section id="stage"></section>
         </div>
+
         <footer>
             <div class="container text-center justify-content-center" id="social">
                 <a href="https://fb.me/jawfishapp"><i class="fa fa-facebook fa-5x"></i></a>
@@ -46,12 +56,14 @@
             </div>
         </footer>
     </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function (event) {
             const apiUrl = `${location.origin}/newurl`;
 
-            let longUrl = document.getElementById('src-input');
-            shortUrl = document.getElementById('output-url');
+            const longUrl = document.getElementById('src-input');
+            const shortUrl = document.getElementById('output-url');
+            const stage = document.getElementById('stage');
 
             longUrl.addEventListener("submit", function (e) {
                 e.preventDefault();
@@ -61,27 +73,30 @@
 
                 fetch(apiUrl, {
                     method: "POST",
-                    // mode: "cors", // no-cors, cors, *same-origin
-                    // credentials: "same-origin", // include, same-origin, *omit
                     headers: { "Content-Type": "application/json; charset=utf-8" },
-                    // redirect: "follow", // manual, *follow, error
-                    // referrer: "no-referrer", // no-referrer, *client
                     body: JSON.stringify({ "sourceUrl": inputText })
                 })
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (data) {
-                    // console.log(JSON.stringify(data));
-                    // console.log(typeof data);
-                    // console.log();
                     shortUrl.value = `${location.origin}/${Object.keys(data)[0]}`
+
+                    // for iframe
+                    const iframe = document.createElement('iframe');
+                    iframe.setAttribute('id', "preview-frame");
+                    iframe.setAttribute('src', `${location.origin}/${Object.keys(data)[0]}`);
+
+                    const frame = document.getElementById("preview-frame");
+
+                    if (frame) {
+                        stage.replaceChild(iframe, frame);
+                    } else {
+                        stage.appendChild(iframe);
+                    }
+                    
+                    // console.log(iframe);
                 });
-                // for iframe
-                // const stage = document.getElementById('stage');
-                // let iframe = document.createElement('iframe');
-                // iframe.setAttribute('src', inputText);
-                // console.log(iframe);
             });
         });
     </script>
