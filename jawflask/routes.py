@@ -29,21 +29,28 @@ def posturl():
     print(sourceurl)
     return(jsonify(url_generator(sourceurl)))
 
-@jawfishapp.route('/deleteurl/<delshort>', methods=["DELETE"])
+
 def delurl(delshort):
     """DELETE a url to delete"""
-    print("Post url to delete")
+    print("Post url to delete", delshort)
     try:
-        del urlstore.urldict[delshort]
+        print("in try")
+        shorturl = urlstore.deldict[delshort]
+        print("shorturl = ", shorturl)
+        del urlstore.urldict[shorturl]
+        del urlstore.deldict[delshort]
+        urlstore.save()
+        print("Saved deletion")
     except KeyError:
         return "Not Found"
-    return("OK")
-
+    return "Deleted short url" + shorturl, 200
 
 @jawfishapp.route('/<short>')
 def shorturl(short):
     """Return redirect to long url"""
     print("redirect to long url from: ", short)
+    if len(short) == 7:
+        return delurl(short)
     try:
         return redirect(urlstore.urldict[short], code = 302)
     except KeyError:
