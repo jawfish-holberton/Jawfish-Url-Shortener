@@ -11,18 +11,18 @@
 </head>
 <body>
     <!-- Input -->
-    <div class="container">
+    <div class="container" style="padding-top: 3%">
         <div class="row justify-content-center">
-            <img src="../images/big_logo.png" alt="Jawfish logo">
+            <img src="../images/big_logo.png" alt="Jawfish logo" class="image-fluid">
         </div>
         <div class="row justify-content-around">
-            <section class='col-5'>
+            <section class='col-4'>
                 <form action="" id="src-input" class="input-group input-group-lg">
                     <input type="url" id="src-url">
                     <button id="submit" class="btn btn-primary">Submit</button>
                 </form>
             </section>
-            <section class='col-5'>
+            <section class='col-4'>
                 <form action="" id="output" class="input-group input-group-lg">
                         <input type="text" id="output-url">
                 </form>
@@ -31,6 +31,10 @@
         <div class="row">
             <section id="stage"></section>
         </div>
+        <div class='row'>
+            <footer>footah</footer>
+        </div>
+    </div>
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
             const apiUrl = '//localhost/newurl';
