@@ -74,7 +74,10 @@
                     })
                     .then(function(myJson) {
                         console.log(JSON.stringify(myJson));
-                        shortUrl.value = myJson.title
+                        for(i in myJson) {
+                            key = i
+                        }
+                        shortUrl.value = window.location.href + key
                     });
 
                 // for iframe
