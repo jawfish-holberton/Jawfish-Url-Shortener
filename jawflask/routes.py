@@ -24,6 +24,16 @@ def posturl():
         abort(404)
     url_generator(sourceurl)
 
+@jawfish.route('/deleteurl/<delshort>', methods=["DELETE"])
+def posturl(delshort):
+    """DELETE a url to delete"""
+    print("Post url to delete")
+    try:
+        del urlstore.urldict[delshort]
+    except KeyError:
+        abort(404)
+    url_generator(sourceurl)
+
 
 @jawfish.route('/<short>')
 def shorturl(short):
