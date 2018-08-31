@@ -23,12 +23,25 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
+            const apiUrl = 'https://jsonplaceholder.typicode.com/todos/1';
+
             let longUrl = document.getElementById('src-input');
+            shortUrl = document.getElementById('output-url');
+
             longUrl.addEventListener("submit", function(e) {
-                e.preventDefault();                
-                let input_v = e.target[0].value;
-                shortUrl = document.getElementById('output-url');
-                shortUrl.value = input_v;
+                e.preventDefault();
+
+                let inputText = e.target[0].value;
+                shortUrl.value = inputText;
+
+                const prom = fetch(apiUrl)
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(myJson) {
+                        console.log(JSON.stringify(myJson));
+                        shortUrl.value = myJson.title
+                    });
             });
         });
     </script>
