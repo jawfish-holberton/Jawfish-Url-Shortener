@@ -9,9 +9,10 @@ import sys
 def url_generator():
     chars = string.ascii_uppercase + string.ascii_lowercase
     size = 6
-    url_string = ''.join(random.choice(chars) for i in range(size))
-    urlstore.save(sys.argv[1], url_string)
-    return (url_string)
+    rng_string = ''.join(random.choice(chars) for i in range(size))
+    urlstore.urldict[rng_string] = sys.argv[1]
+    urlstore.save()
+    return (rng_string)
 
 
 
