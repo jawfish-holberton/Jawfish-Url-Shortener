@@ -2,7 +2,7 @@
 
 
 import flask
-from flask import request, abort, redirect, render_template
+from flask import request, abort, redirect, render_template, jsonify
 from jawflask import jawfish
 from jawflask.storage import urlstore
 from jawflask.random_short_url import url_generator
@@ -25,7 +25,7 @@ def posturl():
     except KeyError:
         abort(404)
     print(sourceurl)
-    return(url_generator(sourceurl))
+    return(jsonify(url_generator(sourceurl)))
 
 @jawfish.route('/deleteurl/<delshort>', methods=["DELETE"])
 def delurl(delshort):
@@ -34,8 +34,8 @@ def delurl(delshort):
     try:
         del urlstore.urldict[delshort]
     except KeyError:
-        abort(404)
-    url_generator(sourceurl)
+        return "Not Found"
+    return("OK")
 
 
 @jawfish.route('/<short>')
