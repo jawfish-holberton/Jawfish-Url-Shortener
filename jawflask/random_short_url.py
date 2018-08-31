@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from storage import urlstore
+from jawflask.storage import urlstore
 import string
 import random
 import sys

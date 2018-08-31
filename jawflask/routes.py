@@ -25,7 +25,7 @@ def posturl():
     except KeyError:
         abort(404)
     print(sourceurl)
-    url_generator(sourceurl)
+    return(url_generator(sourceurl))
 
 @jawfish.route('/deleteurl/<delshort>', methods=["DELETE"])
 def delurl(delshort):
