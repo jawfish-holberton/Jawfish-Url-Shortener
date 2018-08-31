@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/jawflask/assets/css/main.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
-    
+    <link rel="icon" href="static/favicon.ico">
 </head>
 <body>
     <!-- Input -->
@@ -36,7 +35,7 @@
 =======
     <div class="container" style="padding-top: 3%">
         <div class="row justify-content-center">
-            <img src="../images/big_logo.png" alt="Jawfish logo" class="image-fluid">
+            <img src="static/images/big_logo.png" alt="Jawfish logo" class="image-fluid">
         </div>
         <div class="row justify-content-around">
             <section class='col-4'>
@@ -109,7 +108,10 @@
                     })
                     .then(function(myJson) {
                         console.log(JSON.stringify(myJson));
-                        shortUrl.value = myJson.title
+                        for(i in myJson) {
+                            key = i
+                        }
+                        shortUrl.value = window.location.href + key
                     });
 
                 // for iframe
