@@ -3,19 +3,21 @@
 
 import flask
 from flask import request, abort, redirect, render_template, jsonify
-from jawflask import jawfish
+from jawflask.jawfish import jawfishapp
 from jawflask.storage import urlstore
 from jawflask.random_short_url import url_generator
 
-@jawfish.route('/')
-@jawfish.route('/index.html')
+print("routes imported")
+
+@jawfishapp.route('/')
+@jawfishapp.route('/index.html')
 def indexpage():
     """Display basic index page"""
     print("Display index")
     return render_template("index.html")
 
 
-@jawfish.route('/newurl', methods=["POST"])
+@jawfishapp.route('/newurl', methods=["POST"])
 def posturl():
     """POST a url to shorten"""
     print("Post url to shorten")
@@ -27,7 +29,7 @@ def posturl():
     print(sourceurl)
     return(jsonify(url_generator(sourceurl)))
 
-@jawfish.route('/deleteurl/<delshort>', methods=["DELETE"])
+@jawfishapp.route('/deleteurl/<delshort>', methods=["DELETE"])
 def delurl(delshort):
     """DELETE a url to delete"""
     print("Post url to delete")
@@ -38,7 +40,7 @@ def delurl(delshort):
     return("OK")
 
 
-@jawfish.route('/<short>')
+@jawfishapp.route('/<short>')
 def shorturl(short):
     """Return redirect to long url"""
     print("redirect to long url from: ", short)
