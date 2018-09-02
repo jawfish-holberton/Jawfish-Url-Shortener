@@ -1,6 +1,6 @@
 """Init flask app"""
 
-
+from os import getenv
 from flask import Flask
 from jawflask import storage
 
@@ -12,5 +12,7 @@ from jawflask.routes import *
 
 
 if __name__ == "__main__":
-    #jawflask.run(host="35.221.16.149", port="80")
-    jawfishapp.run(host="localhost", port="80")
+    host = getenv("APP_HOST", "localhost")
+    port = getenv("APP_PORT", 80)
+    
+    jawfishapp.run(host=host, port=int(port))

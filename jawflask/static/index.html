@@ -10,21 +10,12 @@
     <link href="static/assets/css/main.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="static/favicon.ico">
-    <style>
-        #stage iframe {
-            width: 80vw;
-            height: 50vh;
-            padding: 50px;
-            border: 0;
-        }
-    </style>
 </head>
 
 <body>
-    <!-- Input -->
     <div class="container">
         <div class="row justify-content-center" id="logo-row">
-        <img src="static/images/big_logo.png" alt="Jawfish logo">
+            <img src="static/images/big_logo.png" alt="Jawfish logo">
         </div>
         <div class="row justify-content-around">
             <section class='col-4'>
@@ -50,9 +41,9 @@
         </div>
 
         <footer>
-            <div class="container text-center justify-content-center" id="social">
-                <a href="https://fb.me/jawfishapp"><i class="fa fa-facebook fa-5x"></i></a>
-                <a href="https://twitter.com/jawfishapp"><i class="fa fa-twitter fa-5x"></i></a>
+            <div id="social" class="container text-center justify-content-center">
+                <a href="//fb.me/jawfishapp"><i class="fa fa-facebook fa-5x"></i></a>
+                <a href="//twitter.com/jawfishapp"><i class="fa fa-twitter fa-5x"></i></a>
             </div>
         </footer>
     </div>
@@ -72,31 +63,42 @@
                 shortUrl.value = inputText;
 
                 fetch(apiUrl, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json; charset=utf-8" },
-                    body: JSON.stringify({ "sourceUrl": inputText })
-                })
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (data) {
-                    shortUrl.value = `${location.origin}/${Object.keys(data)[0]}`
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json; charset=utf-8"
+                        },
+                        body: JSON.stringify({
+                            "sourceUrl": inputText
+                        })
+                    })
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        shortUrl.value = `${location.origin}/${Object.keys(data)[0]}`
 
-                    // for iframe
-                    const iframe = document.createElement('iframe');
-                    iframe.setAttribute('id', "preview-frame");
-                    iframe.setAttribute('src', `${location.origin}/${Object.keys(data)[0]}`);
+                        // for iframe
+                        const iframe = document.createElement('iframe');
+                        iframe.setAttribute('id', "preview-frame");
 
-                    const frame = document.getElementById("preview-frame");
 
-                    if (frame) {
-                        stage.replaceChild(iframe, frame);
-                    } else {
-                        stage.appendChild(iframe);
-                    }
-                    
-                    // console.log(iframe);
-                });
+                        iframe.onload = function (e) {
+                            console.log(e);
+                        }
+
+
+                        iframe.setAttribute('src', `${location.origin}/${Object.keys(data)[0]}`);
+
+                        const frame = document.getElementById("preview-frame");
+
+                        if (frame) {
+                            stage.replaceChild(iframe, frame);
+                        } else {
+                            stage.appendChild(iframe);
+                        }
+
+                        // console.log(iframe);
+                    });
             });
         });
     </script>

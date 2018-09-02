@@ -1,18 +1,33 @@
 # Jawfish-Url-Shortener
 
-## Url Shortener
-A url shortener allows a user to input a url and receive a new shorter link to the same web address.
+<div align="center">
+  <img src="https://github.com/Donnerschlag/Jawfish-Url-Shortener/raw/master/jawflask/static/images/big_logo.png" alt="Jawfish Logo" />
+</div>
+
+<div align="center">
+    [![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com)
+    [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
+    [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
+</div>
 
 ## Description
 The Jawfish url shortener allows a user to input a url and receive a new shorter link to the same web address.
 
+## Url Shortener
+A url shortener allows a user to input a url and receive a new shorter link to the same web address.
+
 ## Environment
 * OS: Ubuntu 14.04 LTS
-* Languages: Python 3.4.3, HTML, JSON
+* Languages: Python v3.4.3, JavaScript (ES7), JSON, HTML, CSS
+* Frameworks: Flask v1.0.2
+* Front-end Libraries: Bootstrap v4.1.3 (without JS)
+* Fonts: Font-Awesome v4.7.0
 
 ## Getting Started
-```
+```sh
 git clone https://github.com/Donnerschlag/Jawfish-Url-Shortener.git
+pip3 install -r requirements.txt
+./run_server.sh
 ```
 
 ## Members:

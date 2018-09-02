@@ -13,7 +13,7 @@
     border-color: #FC261D;
 }
 
-footer > div {
+footer>div {
     font-size: 10px;
 }
 
@@ -22,6 +22,13 @@ footer > div {
     margin-left: -20px;
 }
 
-#social > a {
+#social>a {
     padding: 0px 20px;
+}
+
+#stage iframe {
+    width: 80vw;
+    height: 50vh;
+    padding: 50px;
+    border: 0;
 }
