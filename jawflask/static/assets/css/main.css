@@ -26,6 +26,14 @@ footer>div {
     padding: 0px 20px;
 }
 
+#stage #preview a {
+    min-width: 100%;
+    display: block;
+    padding: 40px 0 0;
+    color: #FC261D;
+    text-align: center;
+}
+
 #stage iframe {
     width: 80vw;
     height: 50vh;
