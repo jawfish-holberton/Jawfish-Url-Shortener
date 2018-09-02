@@ -75,7 +75,9 @@
                         return response.json();
                     })
                     .then(function (data) {
-                        shortUrl.value = `${location.origin}/${Object.keys(data)[0]}`
+                        shortUrl.value = `${location.origin}/${Object.keys(data)[0]}`;
+                        shortUrl.focus();
+                        shortUrl.select();
 
                         // for iframe
                         const iframe = document.createElement('iframe');
@@ -86,7 +88,6 @@
                             console.log(e);
                         }
 
-
                         iframe.setAttribute('src', `${location.origin}/${Object.keys(data)[0]}`);
 
                         const frame = document.getElementById("preview-frame");
@@ -96,8 +97,6 @@
                         } else {
                             stage.appendChild(iframe);
                         }
-
-                        // console.log(iframe);
                     });
             });
         });
