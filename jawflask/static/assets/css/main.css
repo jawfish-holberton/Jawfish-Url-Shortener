@@ -1,42 +1,204 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a:hover {
+    transition: all linear 0.2s;
+}
+
 #logo-row {
     margin-top: 100px;
-    padding-bottom: 60px;
+    padding-bottom: 60px
 }
 
 .my-input-size {
-    width: 200px;
+    width: 200px
 }
 
 .btn-jawfish {
     color: #fff;
     background-color: #FC261D;
-    border-color: #FC261D;
+    border-color: #FC261D
 }
 
 footer>div {
-    font-size: 10px;
+    font-size: 10px
 }
 
 #social {
-    padding-top: 60px;
-    margin-left: -20px;
+    padding-top: 90px
 }
 
 #social>a {
-    padding: 0px 20px;
+    padding: 0px 20px
+}
+
+#stage {
+    width: 100%
+}
+
+#stage #preview {
+    width: 80vw;
+    height: 50vh;
+    padding: 15px
+}
+
+#stage #preview-frame {
+    border: 0;
+    width: 100%;
+    padding: 15px 0 15px;
+    min-height: 50vh
 }
 
 #stage #preview a {
     min-width: 100%;
     display: block;
-    padding: 40px 0 0;
+    padding: 15px 0 0;
     color: #FC261D;
-    text-align: center;
+    text-align: center
 }
 
-#stage iframe {
-    width: 80vw;
-    height: 50vh;
-    padding: 50px;
-    border: 0;
+#stage #preview p {
+    padding: 60px;
+    text-align: center
+}
+
+#preloader {
+    width: 100px;
+    margin: 0 auto;
+    position: absolute;
+    left: calc(50% - 50px)
+}
+
+/*square*/
+.span-wrapper {
+    float: left;
+    width: 100px;
+    /* background-color: rgba(0, 0, 0, 0.02); */
+    height: 100px;
+    vertical-align: middle;
+    border-radius: 1px;
+    margin-right: 100px;
+}
+
+.square {
+    width: 20px;
+    height: 20px;
+    border: 1px #FC261D solid;
+    margin: 36px auto;
+    position: relative;
+    -webkit-animation: fill_color 5s linear infinite;
+    -moz-animation: fill_color 5s linear infinite;
+    animation: fill_color 5s linear infinite;
+}
+
+.square:after {
+    width: 4px;
+    height: 4px;
+    position: absolute;
+    content: "";
+    background-color:#FC261D;
+    top: -8px;
+    left: 0px;
+    -webkit-animation: square_check 1s ease-in-out infinite;
+    -moz-animation: square_check 1s ease-in-out infinite;
+    animation: square_check 1s ease-in-out infinite;
+}
+
+@-webkit-keyframes square_check {
+    25% {
+        left: 22px;
+        top: -8px;
+    }
+
+    50% {
+        left: 22px;
+        top: 22px;
+    }
+
+    75% {
+        left: -9px;
+        top: 22px;
+    }
+
+    100% {
+        left: -9px;
+        top: -7px;
+    }
+}
+
+@-moz-keyframes square_check {
+    25% {
+        left: 22px;
+        top: -8px;
+    }
+
+    50% {
+        left: 22px;
+        top: 22px;
+    }
+
+    75% {
+        left: -9px;
+        top: 22px;
+    }
+
+    100% {
+        left: -9px;
+        top: -7px;
+    }
+}
+
+@keyframes square_check {
+    25% {
+        left: 22px;
+        top: -8px;
+    }
+
+    50% {
+        left: 22px;
+        top: 22px;
+    }
+
+    75% {
+        left: -9px;
+        top: 22px;
+    }
+
+    100% {
+        left: -9px;
+        top: -7px;
+    }
+}
+
+@-webkit-keyframes fill_color {
+    0% {
+        box-shadow: inset 0px 0px 0px 0px rgba(255, 255, 255, 0.1);
+    }
+
+    100% {
+        box-shadow: inset 0px -20px 0px 0px rgba(255, 255, 255, 1);
+    }
+}
+
+@-moz-keyframes fill_color {
+    0% {
+        box-shadow: inset 0px 0px 0px 0px rgba(255, 255, 255, 0.1);
+    }
+
+    100% {
+        box-shadow: inset 0px -20px 0px 0px rgba(255, 255, 255, 1);
+    }
+}
+
+@keyframes fill_color {
+    0% {
+        box-shadow: inset 0px 0px 0px 0px rgba(238, 6, 6, 0.1);
+    }
+
+    100% {
+        box-shadow: inset 0px -20px 0px 0px rgba(238, 6, 6, 1);
+    }
 }

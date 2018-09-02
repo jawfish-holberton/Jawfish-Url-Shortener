@@ -37,7 +37,13 @@
         </div>
 
         <div class="row">
-            <section id="stage"></section>
+            <section id="stage">
+                <div id="preloader" style="display: none">
+                    <div class="span-wrapper">
+                        <div class="square"></div>
+                    </div>
+                </div>
+            </section>
         </div>
 
         <footer>
@@ -50,23 +56,34 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function (event) {
-            const apiUrl = `${location.origin}/newurl`;
+            const apiUrl = `${location.origin}`;
+            const headers = {
+                "Content-Type": "application/json; charset=utf-8"
+            };
 
             const longUrl = document.getElementById("src-input");
             const shortUrl = document.getElementById("output-url");
             const stage = document.getElementById("stage");
+            const preloader = document.getElementById("preloader");
 
             longUrl.addEventListener("submit", function (e) {
                 e.preventDefault();
 
-                let inputText = e.target[0].value;
-                shortUrl.value = inputText;
+                const inputText = e.target[0].value;
 
-                fetch(apiUrl, {
+                const prevDynamicContent = document.getElementById("preview");
+
+                const dynamicContent = document.createElement("div");
+                dynamicContent.setAttribute("id", "preview");
+
+                if (prevDynamicContent)
+                    prevDynamicContent.innerHTML = "";
+
+                preloader.style.display = "block";
+
+                fetch(apiUrl + "/newurl", {
                         method: "POST",
-                        headers: {
-                            "Content-Type": "application/json; charset=utf-8"
-                        },
+                        headers,
                         body: JSON.stringify({
                             "sourceUrl": inputText
                         })
@@ -75,30 +92,29 @@
                         return response.json();
                     })
                     .then(function (data) {
-                        shortUrl.value = `${location.origin}/${Object.keys(data)[0]}`;
+                        preloader.style.display = "none";
+
+                        shortUrl.value = `${location.origin}/${data.shortUrl}`;
                         shortUrl.focus();
                         shortUrl.select();
 
                         // for iframe
-                        const dynamicContent = document.createElement("div");
-                        const link = document.createElement("a");
-                        const iframe = document.createElement("iframe");
+                        let frame;
 
-                        dynamicContent.setAttribute("id", "preview");
+                        if (data.isFramable) {
+                            frame = document.createElement("iframe");
+                            frame.setAttribute("id", "preview-frame");
+                            frame.setAttribute('src', shortUrl.value);
+                        } else {
+                            frame = document.createElement("div");
+                            frame.setAttribute("id", "preview-frame");
+                            frame.innerHTML =
+                                `<p>The <b>${inputText}</b> website 
+                            can't be previewed because of it's owner's frame policy 
+                            restriction.</p>`
+                        }
 
-                        link.setAttribute("target", "_blank");
-                        link.setAttribute("href", shortUrl.value);
-                        link.innerText = shortUrl.value;
-                        iframe.setAttribute("id", "preview-frame");
-                        iframe.setAttribute('src', shortUrl.value);
-
-                        dynamicContent.appendChild(link);
-                        dynamicContent.appendChild(iframe);
-
-                        const prevDynamicContent = document.getElementById("preview");
-                        // iframe.onload = function (e) {
-                        //     console.log(e);
-                        // }
+                        dynamicContent.appendChild(frame);
 
                         if (prevDynamicContent) {
                             stage.replaceChild(dynamicContent, prevDynamicContent);
@@ -106,8 +122,8 @@
                             stage.appendChild(dynamicContent);
                         }
                     });
-            });
-        });
+            }, false);
+        }, false);
     </script>
     <script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
     <script type="text/javascript">
