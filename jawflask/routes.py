@@ -6,6 +6,7 @@ from flask import request, abort, redirect, send_from_directory, jsonify
 from jawflask.jawfish import jawfishapp
 from jawflask.storage import urlstore
 from jawflask.random_short_url import url_generator
+from requests import head
 
 print("routes imported")
 
@@ -24,10 +25,25 @@ def posturl():
     try:
         sourceurl = request.get_json()["sourceUrl"]
         print(sourceurl)
+
+        source = head(sourceurl);
+        cors_headers = source.headers.get("X-Frame-Options", None)
+        is_framable = True
+
+        if cors_headers:
+            if "sameorigin" in cors_headers.lower():
+                is_framable = False
+
+        print("Previewability has been tested")
+        print("Previewability:", is_framable)
+        
     except KeyError:
         abort(404)
+
     print(sourceurl)
-    return(jsonify(url_generator(sourceurl)))
+    return(jsonify({"shortUrl": url_generator(sourceurl),
+                    "isFramable": is_framable}))
+
 
 @jawfishapp.route('/deleteurl/<delshort>', methods=["DELETE"])
 def delurl(delshort):

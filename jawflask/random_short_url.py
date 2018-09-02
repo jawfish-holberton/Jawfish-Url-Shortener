@@ -12,10 +12,7 @@ def url_generator(sourceUrl):
     rng_string = ''.join(random.choice(chars) for i in range(size))
     urlstore.urldict[rng_string] = sourceUrl
     urlstore.save()
-    return ({rng_string: sourceUrl})
-
-
-
+    return (rng_string)
 
 
 if __name__ == '__main__':

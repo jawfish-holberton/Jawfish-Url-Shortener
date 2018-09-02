@@ -19,7 +19,7 @@ A url shortener allows a user to input a url and receive a new shorter link to t
 ## Environment
 * OS: Ubuntu 14.04 LTS
 * Languages: Python v3.4.3, JavaScript (ES7), JSON, HTML, CSS
-* Frameworks: Flask v1.0.2
+* Frameworks & libraries: Flask v1.0.2, requests v2.19.1
 * Front-end Libraries: Bootstrap v4.1.3 (without JS)
 * Fonts: Font-Awesome v4.7.0
 
