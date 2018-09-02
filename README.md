@@ -5,9 +5,9 @@
 </div>
 
 <div align="center">
-    [![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com)
-    [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
-    [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
+  <img alt="dev-badge" src="https://forthebadge.com/images/badges/built-by-developers.svg">
+  <img alt="dev-badge" src="https://forthebadge.com/images/badges/made-with-python.svg">
+  <img alt="dev-badge" src="https://forthebadge.com/images/badges/made-with-javascript.svg">
 </div>
 
 ## Description
